@@ -6,9 +6,9 @@ Contains the TestReviewDocs classes
 from datetime import datetime
 import inspect
 import models
+import pep8
 from models import review
 from models.base_model import BaseModel
-import pep8
 import unittest
 Review = review.Review
 

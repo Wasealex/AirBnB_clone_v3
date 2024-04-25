@@ -6,9 +6,9 @@ Contains the TestUserDocs classes
 from datetime import datetime
 import inspect
 import models
+import pep8
 from models import user
 from models.base_model import BaseModel
-import pep8
 import unittest
 User = user.User
 
