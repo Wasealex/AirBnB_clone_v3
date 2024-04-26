@@ -88,7 +88,7 @@ TestBaseModel class:
 * `def setUpClass(cls)` - Set up for the doc tests
 * `def test_pep8_conformance_city(self)` - Test that models/city.py conforms to PEP8
 * `def test_pep8_conformance_test_city(self)` - Test that tests/test_models/test_city.py conforms to PEP8
-* `def test_city_module_docstring(self)` - Test for the city.py module docstring
+* `def test_city_module_docstring(self)` -  Test for the city.py module docstring
 * `def test_city_class_docstring(self)` - Test for the City class docstring
 
 [/test_models/test_file_storage.py](/tests/test_models/test_file_storage.py) - Contains the TestFileStorageDocs class:
