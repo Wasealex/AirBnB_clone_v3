@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """set up flask app
 """
-from flask import Flask
+from flask import Flask, jsonify
 from os import getenv
 from models import storage
 from api.v1.views import app_views
@@ -15,6 +15,10 @@ app.register_blueprint(app_views, url_prefix='/api/v1')
 def teardown_appcontext(exception):
     """close session"""
     storage.close()
+
+@app.errorhandler(404)
+def handle_error_page(e):
+    return jsonify({"error": "Not found"}), 404
 
 
 if __name__ == '__main__':
