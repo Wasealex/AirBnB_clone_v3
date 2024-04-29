@@ -16,6 +16,7 @@ def teardown_appcontext(exception):
     """close session"""
     storage.close()
 
+
 @app.errorhandler(404)
 def handle_error_page(e):
     return jsonify({"error": "Not found"}), 404
