@@ -14,15 +14,11 @@ def status():
 
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def get_stats():
-    stats = {}
-    classes = {
+    return jsonify({
         'amenities': storage.count('Amenity'),
         'cities': storage.count('BaseModel'),
-        'Places': storage.count('Place'),
-        'Reviews': storage.count('Review'),
-        'States': storage.count('State'),
-        'Users': storage.count('User')
-    }
-    for key, value in classes.items():
-        stats[key] = value
-    return jsonify(stats)
+        'places': storage.count('Place'),
+        'reviews': storage.count('Review'),
+        'states': storage.count('State'),
+        'users': storage.count('User')
+    })
