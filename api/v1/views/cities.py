@@ -12,7 +12,7 @@ def getcity_states(state_id):
     state = storage.get("State", state_id)
     if state:
         city_list = []
-        for city in state:
+        for city in state.cities:
             city_list.append(city.to_dict())
         return jsonify(city_list), 200
     abort(404)
