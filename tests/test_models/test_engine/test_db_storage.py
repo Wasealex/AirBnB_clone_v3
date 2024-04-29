@@ -86,3 +86,40 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+
+class TestDBStorage(unittest.TestCase):
+    """Test the DBStorage class"""
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get_existing_object(self):
+        """Test that get returns an existing object"""
+        instance = State(name="Test State")
+        instance.save()
+        retrieved_instance = models.storage.get(State.__name__, instance.id)
+        self.assertEqual(retrieved_instance, instance)
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get_nonexistent_object(self):
+        """Test that get returns None for a nonexistent object"""
+        retrieved_inst = models.storage.get(State.__name__, "nonexistent_id")
+        self.assertIsNone(retrieved_inst)
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count_with_class(self):
+        """Test that count returns the correct count for a class"""
+        instance1 = State(name="Test State 1")
+        instance1.save()
+        instance2 = State(name="Test State 2")
+        instance2.save()
+        count = models.storage.count(State.__name__)
+        self.assertEqual(count, 2)
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count_without_class(self):
+        """Test that count returns the correct count for all objects"""
+        instance1 = State(name="Test State 1")
+        instance1.save()
+        instance2 = City(name="Test City 1", state_id=instance1.id)
+        instance2.save()
+        count = models.storage.count()
+        self.assertEqual(count, 2)
