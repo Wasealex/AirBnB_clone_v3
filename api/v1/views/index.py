@@ -16,13 +16,12 @@ def status():
 def get_stats():
     stats = {}
     classes = {
-        'Amenity': storage.count('Amenity'),
-        'BaseModel': storage.count('BaseModel'),
-        'City': storage.count('City'),
-        'Place': storage.count('Place'),
-        'Review': storage.count('Review'),
-        'State': storage.count('State'),
-        'User': storage.count('User')
+        'amenities': storage.count('Amenity'),
+        'cities': storage.count('BaseModel'),
+        'Places': storage.count('Place'),
+        'Reviews': storage.count('Review'),
+        'States': storage.count('State'),
+        'Users': storage.count('User')
     }
     for key, value in classes.items():
         stats[key] = value
