@@ -26,7 +26,8 @@ def get_one_place(place_id):
     return jsonify(place.to_dict())
 
 
-@app_views.route('/places/<place_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/places/<place_id>',
+                 methods=['DELETE'], strict_slashes=False)
 def delete_place(place_id):
     place = storage.get("Place", place_id)
     if place is None:
@@ -71,7 +72,7 @@ def update_place(place_id):
         abort(400, 'Not a JSON')
 
     data = request.get_json()
-    ignore_keys = ['id', 'user_id', 'city_id','created_at', 'updated_at']
+    ignore_keys = ['id', 'user_id', 'city_id', 'created_at', 'updated_at']
     for key, value in data.items():
         if key not in ignore_keys:
             setattr(place, key, value)
