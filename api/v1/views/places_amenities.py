@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""
+"""link place and amenityes
 """
 from flask import jsonify, abort, request
 from models import storage, amenity, place
@@ -16,6 +16,7 @@ def get_place_ameities(place_id):
     for amenity in place.amenities:
         amenity_list.append(amenity.to_dict())
     return jsonify(amenities)
+
 
 @app_views.route('/places/<place_id/amenities/<amenity_id>',
                  methods=['DELETE'], strict_slashes=Fasle)
