@@ -11,7 +11,7 @@ def getall_users():
     user_list = []
     users = storage.all("User").values()
     for user in users:
-        user_list.append(users.to_dict())
+        user_list.append(user.to_dict())
     return jsonify(user_list)
 
 
@@ -54,7 +54,7 @@ def create_user():
 
 @app_views.route('/users/<user_id>',
                  methods=['PUT'], strict_slashes=False)
-def update_user(usre_id):
+def update_user(user_id):
     user = storage.get("User", user_id)
     if user is None:
         abort(404)
