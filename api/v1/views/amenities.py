@@ -10,12 +10,13 @@ from models import storage, amenity
 def getall_amenity():
     amenity_list = []
     amenities = storage.all("Amenity").values()
-    for amenity in amenities:
-        amenity_list.append(amenity.to_dict())
+    for amenitys in amenities:
+        amenity_list.append(amenitys.to_dict())
     return jsonify(amenity_list)
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/amenities/<amenity_id>',
+                 methods=['GET'], strict_slashes=False)
 def get_one_amenity(amenity_id):
     amenity = storage.get("Amenity", amenity_id)
     if amenity is None:
@@ -34,7 +35,7 @@ def delete_amenity(amenity_id):
     return jsonify({}), 200
 
 
-@app_views.route('/amenity', methods=['POST'], strict_slashes=False)
+@app_views.route('/amenities', methods=['POST'], strict_slashes=False)
 def create_amenity():
     if not request.is_json:
         abort(400, 'Not a JSON')
