@@ -18,8 +18,8 @@ def get_place_ameities(place_id):
     return jsonify(amenities)
 
 
-@app_views.route('/places/<place_id/amenities/<amenity_id>',
-                 methods=['DELETE'], strict_slashes=Fasle)
+@app_views.route('/places/<place_id>/amenities/<amenity_id>',
+                 methods=['DELETE'], strict_slashes=False)
 def delete_place_amenity(place_id, amenity_id):
     place = storage.get("Place", place_id)
     if place is None:
@@ -33,11 +33,10 @@ def delete_place_amenity(place_id, amenity_id):
     storage.save()
     return jsonify({}), 200
 
-
 @app_views.route('/places/<place_id>/amenities/<amenity_id>',
                  methods=['POST'], strict_slashes=False)
 def link_place_amenity(place_id, amenity_id):
-    place = stprage.get("Place", place_id)
+    place = storage.get("Place", place_id)
     if place is None:
         abort(404)
 
